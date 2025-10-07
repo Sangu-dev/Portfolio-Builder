@@ -1,4 +1,13 @@
 {
+  "name": "portfolio-builder",
+  "version": "1.0.0",
+  "description": "A full-stack portfolio builder application",
+  "scripts": {
+    "dev:server": "cd server && npm start",
+    "dev:client": "cd client && npm run dev",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build"
+  },
   "dependencies": {
     "express": "^5.1.0"
   }

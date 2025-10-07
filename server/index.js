@@ -31,7 +31,7 @@ async function listTemplates() {
     const stat = await fs.stat(p);
     if (!stat.isDirectory()) continue;
     const metaPath = path.join(p, 'meta.json');
-    let meta = { id, name: id, description: '', thumbnail: /templates/${id}/thumbnail.png };
+    let meta = { id, name: id, description: '', thumbnail: `/templates/${id}/thumbnail.png` };
     if (await fs.pathExists(metaPath)) {
       try { meta = { id, ...(await fs.readJson(metaPath)) }; } catch (e) { /* ignore */ }
     }
@@ -85,7 +85,7 @@ app.post('/api/generate', async (req, res) => {
     // create ZIP and stream to response
     res.setHeader('Content-Type', 'application/zip');
     const fileNameSafe = (profile.name || 'portfolio').replace(/[^a-z0-9.-]/gi, '');
-    res.setHeader('Content-Disposition', attachment; filename="${fileNameSafe}.zip"\);
+    res.setHeader('Content-Disposition', `attachment; filename="${fileNameSafe}.zip"`);
 
     const archive = archiver('zip', { zlib: { level: 9 } });
     archive.on('error', err => { throw err; });
@@ -101,4 +101,4 @@ app.post('/api/generate', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(Server running on http://localhost:${PORT}));
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

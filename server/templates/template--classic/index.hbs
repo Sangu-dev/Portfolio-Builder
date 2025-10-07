@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{name}} — Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-content">
+        <h1 class="name">{{name}}</h1>
+        <p class="tagline">{{role}}</p>
+        
+        {{#if contact}}
+        <div class="contact-info">
+          {{#if contact.email}}
+            <span class="contact-item">✉ {{contact.email}}</span>
+          {{/if}}
+          {{#if contact.linkedin}}
+            <a href="{{contact.linkedin}}" target="_blank" class="contact-item">🔗 LinkedIn</a>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+    </header>
+
+    <div class="main-content">
+      {{#if bio}}
+      <section class="section about-section">
+        <h2 class="section-heading">About Me</h2>
+        <div class="section-divider"></div>
+        <p class="about-text">{{bio}}</p>
+      </section>
+      {{/if}}
+
+      {{#if skills}}
+      <section class="section skills-section">
+        <h2 class="section-heading">Technical Skills</h2>
+        <div class="section-divider"></div>
+        <div class="skills-list">
+          {{#each skills}}
+            <div class="skill-item">
+              <span class="skill-bullet">▸</span>
+              <span>{{this}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </section>
+      {{/if}}
+
+      {{#if projects}}
+      <section class="section projects-section">
+        <h2 class="section-heading">Portfolio</h2>
+        <div class="section-divider"></div>
+        <div class="projects-list">
+          {{#each projects}}
+            <article class="project-item">
+              <h3 class="project-name">{{title}}</h3>
+              <p class="project-desc">{{description}}</p>
+              {{#if link}}
+                <a href="{{link}}" target="_blank" class="project-url">Visit Project</a>
+              {{/if}}
+            </article>
+          {{/each}}
+        </div>
+      </section>
+      {{/if}}
+    </div>
+
+    <footer class="footer">
+      <p>&copy; {{name}} • Professional Portfolio</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{name}} — Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile">
+        <h1 class="name">{{name}}</h1>
+        <p class="role">{{role}}</p>
+        <div class="bio">{{bio}}</div>
+      </div>
+      
+      {{#if contact}}
+      <div class="contact-section">
+        <h3>Get in Touch</h3>
+        {{#if contact.email}}
+          <a href="mailto:{{contact.email}}" class="contact-link">📧 {{contact.email}}</a>
+        {{/if}}
+        {{#if contact.linkedin}}
+          <a href="{{contact.linkedin}}" target="_blank" class="contact-link">💼 LinkedIn</a>
+        {{/if}}
+      </div>
+      {{/if}}
+    </aside>
+
+    <main class="content">
+      {{#if skills}}
+      <section class="skills-section">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+          {{#each skills}}
+            <span class="skill-tag">{{this}}</span>
+          {{/each}}
+        </div>
+      </section>
+      {{/if}}
+
+      {{#if projects}}
+      <section class="projects-section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          {{#each projects}}
+            <article class="project-card">
+              <h3 class="project-title">{{title}}</h3>
+              <p class="project-description">{{description}}</p>
+              {{#if link}}
+                <a href="{{link}}" target="_blank" class="project-link">View Project →</a>
+              {{/if}}
+            </article>
+          {{/each}}
+        </div>
+      </section>
+      {{/if}}
+    </main>
+  </div>
+</body>
+</html>

@@ -1,8 +1,192 @@
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;padding:24px;color:#222}
-.site-header{border-bottom:1px solid #eee;padding-bottom:12px;margin-bottom:18px}
-h1{margin:0;font-size:28px}
-.role{color:#666}
-.skills ul{display:flex;gap:8px;flex-wrap:wrap;list-style:none;padding:0}
-.skills li{background:#f0f0f0;padding:6px 10px;border-radius:6px}
-.project{border:1px solid #eee;padding:12px;margin-bottom:12px;border-radius:8px}
-.contact{margin-top:24px;border-top:1px solid #eee;padding-top:12px}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #2d3748;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.site-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.role {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+.content {
+  padding: 50px 40px;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 28px;
+  color: #667eea;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #667eea;
+  display: inline-block;
+}
+
+.about p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #4a5568;
+}
+
+.skills ul {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.skills li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s;
+}
+
+.skills li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+}
+
+.project {
+  background: #f7fafc;
+  border-left: 4px solid #667eea;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.project:hover {
+  background: #edf2f7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.project h3 {
+  font-size: 22px;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.project p {
+  color: #4a5568;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.project a {
+  display: inline-block;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.project a:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.contact {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px;
+  margin: 0 -40px -50px -40px;
+  text-align: center;
+}
+
+.contact h2 {
+  color: white;
+  border-bottom: 3px solid white;
+  margin-bottom: 25px;
+}
+
+.contact p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.contact a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  transition: border-color 0.3s;
+}
+
+.contact a:hover {
+  border-bottom-color: white;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+  
+  .site-header {
+    padding: 40px 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  .content {
+    padding: 30px 20px;
+  }
+  
+  .contact {
+    margin: 0 -20px -30px -20px;
+    padding: 30px 20px;
+  }
+}
