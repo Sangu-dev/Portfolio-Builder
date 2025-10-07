@@ -1,0 +1,63 @@
+/* General page setup */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f4f4f4;
+}
+
+/* Header styling */
+header {
+  text-align: center;
+  background: #4caf50;
+  color: white;
+  padding: 20px 0;
+  border-radius: 10px;
+}
+
+/* Main container */
+main {
+  max-width: 600px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Form layout */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form elements */
+input, textarea, select, button {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Button style */
+button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+/* Preview result box */
+#result {
+  margin-top: 20px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}

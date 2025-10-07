@@ -1,0 +1,58 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun.lockb
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+logs/*
+*.out
+*.err
+
+# Build output
+dist/
+build/
+.cache/
+.next/
+out/
+coverage/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Misc
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.tgz
+
+# Optional — ignore .env backups or generated config
+.env.*
+!.env.example

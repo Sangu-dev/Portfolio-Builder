@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Builder</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Portfolio Builder</h1>
+    <p>Fill in your details and choose a template</p>
+  </header>
+  <main>
+    <form id="portfolioForm">
+      <label>Name:</label>
+      <input type="text" id="name" required>
+
+      <label>Bio:</label>
+      <textarea id="bio" required></textarea>
+
+      <label>Choose Template:</label>
+      <select id="template">
+        <option value="template1">Modern</option>
+        <option value="template2">Classic</option>
+      </select>
+
+      <button type="submit">Generate Portfolio</button>
+    </form>
+
+    <div id="result"></div>
+  </main>
+
+  <script src="src/script.js"></script>
+</body>
+</html>

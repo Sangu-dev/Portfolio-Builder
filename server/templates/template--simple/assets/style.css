@@ -1,0 +1,8 @@
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;padding:24px;color:#222}
+.site-header{border-bottom:1px solid #eee;padding-bottom:12px;margin-bottom:18px}
+h1{margin:0;font-size:28px}
+.role{color:#666}
+.skills ul{display:flex;gap:8px;flex-wrap:wrap;list-style:none;padding:0}
+.skills li{background:#f0f0f0;padding:6px 10px;border-radius:6px}
+.project{border:1px solid #eee;padding:12px;margin-bottom:12px;border-radius:8px}
+.contact{margin-top:24px;border-top:1px solid #eee;padding-top:12px}

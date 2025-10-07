@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{name}} — Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>{{name}}</h1>
+    <p class="role">{{role}}</p>
+  </header>
+
+  <section class="about">
+    <h2>About</h2>
+    <p>{{bio}}</p>
+  </section>
+
+  {{#if skills}}
+  <section class="skills">
+    <h2>Skills</h2>
+    <ul>
+      {{#each skills}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </section>
+  {{/if}}
+
+  {{#if projects}}
+  <section class="projects">
+    <h2>Projects</h2>
+    {{#each projects}}
+      <article class="project">
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+        {{#if link}}<a href="{{link}}" target="_blank">View</a>{{/if}}
+      </article>
+    {{/each}}
+  </section>
+  {{/if}}
+
+  <footer class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:{{contact.email}}">{{contact.email}}</a></p>
+    {{#if contact.linkedin}}<p>LinkedIn: <a href="{{contact.linkedin}}">{{contact.linkedin}}</a></p>{{/if}}
+  </footer>
+</body>
+</html>
