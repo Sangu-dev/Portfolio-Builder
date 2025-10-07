@@ -35,7 +35,7 @@ A full-stack web application that allows users to dynamically create and customi
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Mrtracker-new/Portfolio-Builder.git
+   git clone https://github.com/Sangu-dev/Portfolio-Builder.git
    cd Portfolio-Builder
    ```
 
