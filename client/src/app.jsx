@@ -10,13 +10,13 @@ export default function App(){
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  useEffect(()=>{ fetch(${API_BASE}/api/templates).then(r=>r.json()).then(setTemplates).catch(console.error) },[])
+  useEffect(()=>{ fetch(`${API_BASE}/api/templates`).then(r=>r.json()).then(setTemplates).catch(console.error) },[])
 
   async function handleGenerate(p) {
     setProfile(p)
     setLoading(true)
     try{
-      const resp = await fetch(${API_BASE}/api/generate, {
+      const resp = await fetch(`${API_BASE}/api/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ templateId: selected.id, profile: p })
@@ -26,7 +26,7 @@ export default function App(){
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = ${(p.name||'portfolio').replace(/[^a-z0-9.-_]/gi, '_')}.zip
+      a.download = `${(p.name||'portfolio').replace(/[^a-z0-9.-_]/gi, '_')}.zip`
       document.body.appendChild(a)
       a.click()
       a.remove()

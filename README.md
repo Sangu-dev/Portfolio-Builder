@@ -35,50 +35,41 @@ A full-stack web application that allows users to dynamically create and customi
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Mrtracker-new/Portfolio-Builder.git
    cd Portfolio-Builder
    ```
 
-2. **Install root dependencies**
+2. **Install all dependencies at once**
    ```bash
-   npm install
+   npm run install:all
    ```
 
-3. **Install client dependencies**
+   Or install individually:
    ```bash
-   cd client
-   npm install
-   cd ..
-   ```
-
-4. **Install server dependencies**
-   ```bash
-   cd server
-   npm install
-   cd ..
+   npm install              # Root
+   cd client && npm install # Client
+   cd ../server && npm install # Server
    ```
 
 ## 🚀 Running the Application
 
 ### Development Mode
 
-1. **Start the server** (from the `server` directory):
-   ```bash
-   cd server
-   npm run dev
-   ```
-   Or with the standard start command:
-   ```bash
-   npm start
-   ```
+**You need TWO terminal windows:**
 
-2. **Start the client** (from the `client` directory):
-   ```bash
-   cd client
-   npm run dev
-   ```
+**Terminal 1 - Start the server** (port 5000):
+```bash
+npm run dev:server
+```
 
-The client will typically run on `http://localhost:5173` and the server on its configured port (usually `http://localhost:3000` or similar).
+**Terminal 2 - Start the client** (port 5173):
+```bash
+npm run dev:client
+```
+
+Then open your browser:
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:5000
 
 ### Production Build
 
@@ -97,23 +88,76 @@ npm run preview
 
 ```
 Portfolio-Builder/
-├── client/              # React frontend
-│   ├── src/            # Source files
-│   │   ├── app.jsx     # Main app component
-│   │   ├── main.jsx    # Entry point
-│   │   └── script.js   # Additional scripts
-│   ├── index.html      # HTML template
-│   └── package.json    # Client dependencies
-├── server/             # Express backend
-│   ├── index.js        # Server entry point
-│   ├── server.js       # Server configuration
-│   └── package.json    # Server dependencies
-└── package.json        # Root dependencies
+├── client/                     # React Frontend (Vite)
+│   ├── src/
+│   │   ├── components/        # React components
+│   │   │   ├── ProfileForm.jsx
+│   │   │   └── TemplatePicker.jsx
+│   │   ├── app.jsx           # Main app component
+│   │   ├── main.jsx          # Entry point
+│   │   └── styles.css        # Global styles
+│   ├── index.html
+│   ├── vite.config.mjs       # Vite configuration
+│   ├── .env.example          # Environment variables example
+│   └── package.json
+│
+├── server/                    # Express Backend
+│   ├── templates/            # Portfolio templates
+│   │   ├── template--simple/    # Simple template
+│   │   ├── template--modern/    # Modern sidebar template
+│   │   └── template--classic/   # Classic professional template
+│   ├── tmp/                  # Generated portfolios (git-ignored)
+│   ├── index.js              # Main server file
+│   ├── .env.example          # Environment variables example
+│   └── package.json
+│
+├── docs/                      # 📚 Documentation
+│   ├── README.md             # Documentation index
+│   ├── QUICK_START.md        # Quick start guide
+│   ├── DEVELOPMENT.md        # Development guide
+│   ├── API.md                # API documentation
+│   ├── TEMPLATES.md          # Templates guide
+│   └── IMPROVEMENTS.md       # Change log
+│
+├── start-all.bat             # Windows: Start both server & client
+├── start-server.bat          # Windows: Start server only
+├── start-client.bat          # Windows: Start client only
+├── package.json              # Root scripts & dependencies
+├── .gitignore
+└── README.md
 ```
+
+## 📚 Documentation
+
+For detailed documentation, see the [`docs/`](docs/) folder:
+
+- **[Quick Start Guide](docs/QUICK_START.md)** - Get started in minutes
+- **[Development Guide](docs/DEVELOPMENT.md)** - Full development documentation
+- **[Improvements Log](docs/IMPROVEMENTS.md)** - What's been fixed and added
+
+## 🎯 Quick Commands
+
+```bash
+# Install all dependencies
+npm run install:all
+
+# Start server (Terminal 1)
+npm run dev:server
+
+# Start client (Terminal 2)
+npm run dev:client
+
+# Build for production
+npm run build
+```
+
+**Windows Users**: Just double-click `start-all.bat` to run everything!
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
+
+Please read our [Development Guide](docs/DEVELOPMENT.md) before contributing.
 
 ## 📝 License
 
@@ -122,6 +166,12 @@ ISC
 ## 👤 Author
 
 Your portfolio, your way!
+
+## 🔗 Links
+
+- Repository: [GitHub](https://github.com/Sangu-dev/Portfolio-Builder)
+- Documentation: [docs/](docs/)
+- Issues: [GitHub Issues](https://github.com/Sangu-dev/Portfolio-Builder/issues)
 
 ---
 
