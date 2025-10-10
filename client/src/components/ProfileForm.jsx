@@ -41,6 +41,16 @@ export default function ProfileForm({ onGenerate, onPreview, disabled }){
     setP(s=>({ ...s, projects: s.projects.filter((_, i) => i !== index) }))
   }
 
+  function handlePreview() {
+    const validation = validateProfile(p)
+    if (!validation.isValid) {
+      setErrors(validation.errors)
+      return
+    }
+    setErrors({})
+    onPreview(p)
+  }
+
   function handleGenerate() {
     const validation = validateProfile(p)
     if (!validation.isValid) {
@@ -179,7 +189,7 @@ export default function ProfileForm({ onGenerate, onPreview, disabled }){
       <div style={{marginTop:20, display:'flex', gap:12, flexDirection:'column'}}>
         <button 
           type="button"
-          onClick={() => onPreview && onPreview(p)} 
+          onClick={handlePreview} 
           disabled={disabled} 
           className="btn-secondary"
           style={{width:'100%'}}

@@ -18,7 +18,6 @@ export default function PreviewModal({ isOpen, onClose, previewUrl }) {
               src={previewUrl} 
               className="preview-frame"
               title="Portfolio Preview"
-              sandbox="allow-same-origin allow-scripts"
             />
           ) : (
             <div className="preview-loading">

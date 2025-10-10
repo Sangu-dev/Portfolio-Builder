@@ -15,10 +15,15 @@ const ROOT = path.resolve(__dirname);
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 const TMP_DIR = path.join(ROOT, 'tmp');
 
-// Security: Add helmet-like headers
+// Security: Add helmet-like headers (but allow framing for previews)
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
+  // Allow framing only from same origin for preview functionality
+  if (!req.path.startsWith('/api/preview/')) {
+    res.setHeader('X-Frame-Options', 'DENY');
+  } else {
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  }
   res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
 });
@@ -221,9 +226,16 @@ app.get('/api/preview/:id', async (req, res) => {
 });
 
 // Serve preview assets with correct paths
-app.use('/api/preview/:id/assets', (req, res, next) => {
+app.get('/api/preview/:id/assets/*', (req, res) => {
   const { id } = req.params;
-  express.static(path.join(TMP_DIR, id, 'assets'))(req, res, next);
+  const assetPath = req.params[0];
+  const fullPath = path.join(TMP_DIR, id, 'assets', assetPath);
+  
+  if (!fs.existsSync(fullPath)) {
+    return res.status(404).send('Asset not found');
+  }
+  
+  res.sendFile(fullPath);
 });
 
 // POST /api/generate-preview -> generates preview without downloading
