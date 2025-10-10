@@ -18,11 +18,9 @@ const TMP_DIR = path.join(ROOT, 'tmp');
 // Security: Add helmet-like headers (but allow framing for previews)
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  // Allow framing only from same origin for preview functionality
-  if (!req.path.startsWith('/api/preview/')) {
+  // Allow framing for preview functionality - don't set X-Frame-Options for previews
+  if (!req.path.startsWith('/api/preview')) {
     res.setHeader('X-Frame-Options', 'DENY');
-  } else {
-    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   }
   res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
