@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.header {
+  margin-bottom: 80px;
+}
+
+.name {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.role {
+  font-size: 18px;
+  color: #666;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.line {
+  width: 60px;
+  height: 1px;
+  background: #1a1a1a;
+}
+
+.section {
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+}
+
+.bio {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #333;
+  font-weight: 300;
+  max-width: 600px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.skill {
+  font-size: 14px;
+  color: #666;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 300;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.project {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 30px;
+}
+
+.project:last-child {
+  border-bottom: none;
+}
+
+.project-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.project-desc {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.project-link {
+  font-size: 14px;
+  color: #1a1a1a;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s;
+  font-weight: 400;
+}
+
+.project-link:hover {
+  transform: translateX(5px);
+}
+
+.footer {
+  margin-top: 100px;
+  padding-top: 40px;
+}
+
+.contact {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.contact-link {
+  font-size: 14px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 300;
+  transition: opacity 0.2s;
+}
+
+.contact-link:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 30px;
+  }
+
+  .name {
+    font-size: 36px;
+  }
+
+  .role {
+    font-size: 16px;
+  }
+
+  .bio {
+    font-size: 18px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}

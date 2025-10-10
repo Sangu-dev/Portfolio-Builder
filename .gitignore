@@ -27,6 +27,7 @@ build/
 .next/
 out/
 coverage/
+docs_ignore/
 
 # IDEs and editors
 .vscode/

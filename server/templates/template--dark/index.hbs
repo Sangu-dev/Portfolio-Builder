@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}} | {{role}}</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="grain"></div>
+  
+  <div class="container">
+    <header class="hero">
+      <div class="hero-content">
+        <div class="badge">Available for work</div>
+        <h1 class="hero-title">{{name}}</h1>
+        <p class="hero-subtitle">{{role}}</p>
+        {{#if bio}}<p class="hero-bio">{{bio}}</p>{{/if}}
+      </div>
+    </header>
+
+    {{#if skills}}
+    <section class="section skills-section">
+      <h2 class="section-heading">Skills & Technologies</h2>
+      <div class="skills-container">
+        {{#each skills}}
+        <div class="skill-card">{{this}}</div>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if projects}}
+    <section class="section">
+      <h2 class="section-heading">Featured Projects</h2>
+      <div class="projects-grid">
+        {{#each projects}}
+        <article class="project-card">
+          <h3 class="project-title">{{title}}</h3>
+          {{#if description}}<p class="project-description">{{description}}</p>{{/if}}
+          {{#if link}}
+          <a href="{{link}}" class="project-link" target="_blank" rel="noopener">
+            <span>Explore Project</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          {{/if}}
+        </article>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if contact}}
+    <footer class="footer">
+      <h2 class="footer-title">Let's Connect</h2>
+      <div class="contact-links">
+        {{#if contact.email}}
+        <a href="mailto:{{contact.email}}" class="contact-button">Email Me</a>
+        {{/if}}
+        {{#if contact.linkedin}}
+        <a href="{{contact.linkedin}}" class="contact-button" target="_blank" rel="noopener">LinkedIn</a>
+        {{/if}}
+      </div>
+      <p class="footer-text">© 2025 {{name}}. All rights reserved.</p>
+    </footer>
+    {{/if}}
+  </div>
+</body>
+</html>
