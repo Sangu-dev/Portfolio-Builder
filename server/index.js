@@ -223,7 +223,7 @@ app.get('/api/preview/:id', async (req, res) => {
   }
 });
 
-// Serve preview assets with correct paths
+// Serve preview assets with correct paths and MIME types
 app.get('/api/preview/:id/assets/*', (req, res) => {
   const { id } = req.params;
   const assetPath = req.params[0];
@@ -231,6 +231,25 @@ app.get('/api/preview/:id/assets/*', (req, res) => {
   
   if (!fs.existsSync(fullPath)) {
     return res.status(404).send('Asset not found');
+  }
+  
+  // Set correct MIME type based on file extension
+  const ext = path.extname(assetPath).toLowerCase();
+  const mimeTypes = {
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.ttf': 'font/ttf'
+  };
+  
+  if (mimeTypes[ext]) {
+    res.setHeader('Content-Type', mimeTypes[ext]);
   }
   
   res.sendFile(fullPath);
@@ -288,7 +307,11 @@ app.post('/api/generate-preview', async (req, res) => {
       const raw = await fs.readFile(templateFile, 'utf8');
       const template = Handlebars.compile(raw);
       const safeProfile = sanitizeProfile(profile);
-      const rendered = template(safeProfile);
+      let rendered = template(safeProfile);
+      
+      // Rewrite asset paths for preview
+      rendered = rendered.replace(/href="assets\//g, `href="/api/preview/${outId}/assets/`);
+      rendered = rendered.replace(/src="assets\//g, `src="/api/preview/${outId}/assets/`);
       
       await fs.writeFile(path.join(outDir, 'index.html'), rendered, 'utf8');
 
