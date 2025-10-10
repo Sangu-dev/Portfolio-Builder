@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}} - Creative Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <span class="greeting">👋 Hey there!</span>
+        <h1 class="name">I'm {{name}}</h1>
+        <p class="tagline">{{role}}</p>
+        {{#if bio}}<p class="intro">{{bio}}</p>{{/if}}
+      </div>
+    </header>
+
+    {{#if skills}}
+    <section class="section">
+      <h2 class="section-title">
+        <span class="title-decoration">✦</span>
+        What I Do
+      </h2>
+      <div class="skills-wrapper">
+        {{#each skills}}
+        <div class="skill-badge">{{this}}</div>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if projects}}
+    <section class="section">
+      <h2 class="section-title">
+        <span class="title-decoration">★</span>
+        My Work
+      </h2>
+      <div class="projects-masonry">
+        {{#each projects}}
+        <div class="project-item">
+          <div class="project-number">{{@index}}</div>
+          <h3 class="project-name">{{title}}</h3>
+          {{#if description}}<p class="project-text">{{description}}</p>{{/if}}
+          {{#if link}}
+          <a href="{{link}}" class="project-cta" target="_blank" rel="noopener">
+            Check it out →
+          </a>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if contact}}
+    <footer class="footer">
+      <h2 class="footer-heading">Let's create something amazing together!</h2>
+      <div class="footer-buttons">
+        {{#if contact.email}}
+        <a href="mailto:{{contact.email}}" class="cta-button cta-primary">
+          <span>📧</span> Send me an email
+        </a>
+        {{/if}}
+        {{#if contact.linkedin}}
+        <a href="{{contact.linkedin}}" class="cta-button cta-secondary" target="_blank" rel="noopener">
+          <span>💼</span> Connect on LinkedIn
+        </a>
+        {{/if}}
+      </div>
+      <p class="footer-note">Made with ❤️ by {{name}}</p>
+    </footer>
+    {{/if}}
+  </div>
+</body>
+</html>

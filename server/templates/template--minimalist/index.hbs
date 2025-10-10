@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}} - {{role}}</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="name">{{name}}</h1>
+      <p class="role">{{role}}</p>
+      <div class="line"></div>
+    </header>
+
+    {{#if bio}}
+    <section class="section">
+      <p class="bio">{{bio}}</p>
+    </section>
+    {{/if}}
+
+    {{#if skills}}
+    <section class="section">
+      <h2 class="section-title">Expertise</h2>
+      <div class="skills-grid">
+        {{#each skills}}
+        <span class="skill">{{this}}</span>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if projects}}
+    <section class="section">
+      <h2 class="section-title">Selected Work</h2>
+      <div class="projects">
+        {{#each projects}}
+        <div class="project">
+          <h3 class="project-title">{{title}}</h3>
+          {{#if description}}<p class="project-desc">{{description}}</p>{{/if}}
+          {{#if link}}<a href="{{link}}" class="project-link" target="_blank" rel="noopener">View Project →</a>{{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if contact}}
+    <footer class="footer">
+      <div class="line"></div>
+      <div class="contact">
+        {{#if contact.email}}<a href="mailto:{{contact.email}}" class="contact-link">{{contact.email}}</a>{{/if}}
+        {{#if contact.linkedin}}<a href="{{contact.linkedin}}" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>{{/if}}
+      </div>
+    </footer>
+    {{/if}}
+  </div>
+</body>
+</html>
