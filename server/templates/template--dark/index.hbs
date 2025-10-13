@@ -12,6 +12,11 @@
   <div class="container">
     <header class="hero">
       <div class="hero-content">
+        {{#if profileImage}}
+        <div class="profile-image-wrapper" style="text-align: center; margin-bottom: 24px;">
+          <img src="{{profileImage}}" alt="{{name}}" class="profile-image" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); border: 4px solid rgba(255,255,255,0.8);" />
+        </div>
+        {{/if}}
         <div class="badge">Available for work</div>
         <h1 class="hero-title">{{name}}</h1>
         <p class="hero-subtitle">{{role}}</p>
