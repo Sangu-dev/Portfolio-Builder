@@ -81,6 +81,7 @@ function sanitizeProfile(profile) {
     name: sanitizeString(profile.name || ''),
     role: sanitizeString(profile.role || ''),
     bio: sanitizeString(profile.bio || ''),
+    profileImage: profile.profileImage || '', // Keep base64 image as-is
     skills: Array.isArray(profile.skills) 
       ? profile.skills.map(s => sanitizeString(s)).filter(Boolean).slice(0, 20)
       : [],

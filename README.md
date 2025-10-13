@@ -1,102 +1,78 @@
 # Portfolio Builder
 
-Create beautiful portfolio websites in minutes with our easy-to-use builder.
+Create beautiful, professional portfolio websites in minutes. No coding required.
 
-## ✨ What's New (v2.1)
+## ✨ Features
 
-- 🎨 **6 Professional Templates** (Simple, Modern, Classic, Minimalist, Dark Mode, Creative)
-- 👁️ **Live Preview** before downloading
-- ✅ **Form Validation** with real-time feedback
-- 🔔 **Toast Notifications** for better UX
-- 🎨 **Modern UI** with gradients and animations
-- 🔒 **Security** features built-in
+- 🎨 **6 Professional Templates** - Choose from Simple, Modern, Classic, Minimalist, Dark, or Creative
+- 📷 **Profile Image Upload** - Add your photo (PNG/JPG, max 2MB)
+- 👁️ **Live Preview** - See before you download
+- 💎 **Modern UI** - Glassmorphism design with smooth animations
+- ✅ **Form Validation** - Real-time feedback
+- 📱 **Fully Responsive** - Works on all devices
+- 🚀 **One-Click Export** - Download as ready-to-deploy ZIP
 
 ## 🚀 Quick Start
 
-### Installation
-
 ```bash
-# Clone and install
-git clone https://github.com/Sangu-dev/Portfolio-Builder.git
-cd Portfolio-Builder
+# 1. Install dependencies
 npm run install:all
+
+# 2. Start the application
+.\start-all.bat          # Windows
+# OR
+npm run dev:server       # Terminal 1
+npm run dev:client       # Terminal 2
+
+# 3. Open http://localhost:5173
 ```
 
-### Running
+## 📖 How to Use
 
-**Option 1: Easy Way (Windows)**
-```bash
-.\start-all.bat
-```
+1. **Choose a template** from 6 professional designs
+2. **Upload your photo** (optional, PNG/JPG, max 2MB)
+3. **Fill in your details** - name, role, bio, skills, projects
+4. **Preview** to see how it looks
+5. **Download** your portfolio as a ZIP file
+6. **Deploy** to GitHub Pages, Netlify, or Vercel
 
-**Option 2: Manual**
-```bash
-# Terminal 1 - Server
-npm run dev:server
+## 🎨 Templates
 
-# Terminal 2 - Client  
-npm run dev:client
-```
+- **Simple** - Clean one-page layout
+- **Modern** - Two-column with sidebar
+- **Classic** - Traditional elegant design
+- **Minimalist** - Ultra-clean with whitespace
+- **Dark** - Modern dark theme
+- **Creative** - Colorful with animations
 
-Then open: **http://localhost:5173**
+## 🛠️ Tech Stack
 
-## 🎯 Features
+- **Frontend:** React 18 + Vite
+- **Backend:** Node.js + Express
+- **Templates:** Handlebars
+- **Styling:** Modern CSS with Variables
 
-### Templates (6 Available)
-1. **Simple** - Clean, one-page layout
-2. **Modern** - Two-column with sidebar
-3. **Classic** - Traditional elegant design
-4. **Minimalist** - Ultra-clean with whitespace
-5. **Dark Mode** - Modern dark theme with glassmorphism
-6. **Creative** - Colorful with animations
 
-### Functionality
-- ✅ Live preview before download
-- ✅ Form validation with error messages
-- ✅ Add/remove skills and projects easily
-- ✅ Export as ZIP file
-- ✅ Fully responsive design
-- ✅ No coding required
 
-## 📦 Tech Stack
 
-**Frontend:** React 18 + Vite  
-**Backend:** Node.js + Express  
-**Templates:** Handlebars
+## 💡 Tips
 
-## 📁 Structure
+- Use professional photos (max 2MB)
+- Keep bio concise (2-3 sentences)
+- Add 5-10 relevant skills
+- Include project links when possible
 
-```
-Portfolio-Builder/
-├── client/          # React frontend
-├── server/          # Express backend
-│   └── templates/   # 6 portfolio templates
-├── docs/            # Documentation
-└── start-all.bat    # Easy start script (Windows)
-```
+## 🐞 Troubleshooting
 
-## 🛠️ Available Commands
+**Ports in use:** Restart with `start-all.bat`  
+**Image not showing:** Clear cache (Ctrl + Shift + R)  
+**Preview issues:** Check browser console (F12)
 
-```bash
-npm run install:all    # Install all dependencies
-npm run dev:server     # Start server (port 5000)
-npm run dev:client     # Start client (port 5173)
-npm run build          # Build for production
-```
-
-## 📚 Documentation
-
-- **Quick Start**: See above
-- **Templates**: Check `server/templates/` folders
-- **API**: Server runs on port 5000
-- **Troubleshooting**: Restart with `.\start-all.bat`
+For detailed help, see [CHANGELOG.md](CHANGELOG.md)
 
 ## 🤝 Contributing
 
-Contributions welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
+Contributions are welcome! Feel free to open issues or submit PRs.
 
 ## 📝 License
 
@@ -104,6 +80,4 @@ ISC
 
 ---
 
-**Version**: 2.1.0  
-**Templates**: 6  
-Built with ❤️ using React and Node.js
+**Version:** 2.2.0 | **Templates:** 6 | Built with ❤️

@@ -123,8 +123,15 @@ export default function App(){
         previewUrl={previewUrl}
       />
       
-      <h1>🎨 Portfolio Builder</h1>
-      <p className="subtitle">Create your professional portfolio in minutes</p>
+      <div className="hero">
+        <h1>🎨 Portfolio Builder</h1>
+        <p className="subtitle">Create your professional portfolio in minutes</p>
+        <div className="features">
+          <div className="feature-badge">✨ 6 Templates</div>
+          <div className="feature-badge">👁️ Live Preview</div>
+          <div className="feature-badge">⚡ Instant Download</div>
+        </div>
+      </div>
       
       {templates.length === 0 && !notification.message && (
         <div className="loading-state">Loading templates...</div>
