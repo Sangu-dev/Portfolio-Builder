@@ -2,7 +2,15 @@ import React, { useState } from 'react'
 import { validateProfile } from '../utils/validation'
 
 function emptyProfile(){
-  return { name:'', role:'', bio:'', skills:[], projects: [], contact: { email:'', linkedin:'' } }
+  return { 
+    name:'', 
+    role:'', 
+    bio:'', 
+    profileImage: '', 
+    skills:[], 
+    projects: [], 
+    contact: { email:'', linkedin:'' } 
+  }
 }
 
 export default function ProfileForm({ onGenerate, onPreview, disabled }){
@@ -12,6 +20,7 @@ export default function ProfileForm({ onGenerate, onPreview, disabled }){
   const [projDesc, setProjDesc] = useState('')
   const [projLink, setProjLink] = useState('')
   const [errors, setErrors] = useState({})
+  const [imagePreview, setImagePreview] = useState(null)
 
   function addSkill(e){ 
     e?.preventDefault()
@@ -39,6 +48,44 @@ export default function ProfileForm({ onGenerate, onPreview, disabled }){
 
   function removeProject(index) {
     setP(s=>({ ...s, projects: s.projects.filter((_, i) => i !== index) }))
+  }
+
+  function handleImageUpload(e) {
+    const file = e.target.files[0]
+    if (!file) return
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      setErrors({ ...errors, profileImage: 'Please select an image file' })
+      return
+    }
+
+    // Validate file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      setErrors({ ...errors, profileImage: 'Image size must be less than 2MB' })
+      return
+    }
+
+    // Read file and convert to base64
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      const base64String = reader.result
+      setP({ ...p, profileImage: base64String })
+      setImagePreview(base64String)
+      // Clear any previous errors
+      const newErrors = { ...errors }
+      delete newErrors.profileImage
+      setErrors(newErrors)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  function removeImage() {
+    setP({ ...p, profileImage: '' })
+    setImagePreview(null)
+    // Clear file input
+    const fileInput = document.getElementById('profile-image-input')
+    if (fileInput) fileInput.value = ''
   }
 
   function handlePreview() {
@@ -73,6 +120,47 @@ export default function ProfileForm({ onGenerate, onPreview, disabled }){
           </ul>
         </div>
       )}
+
+      {/* Profile Image Upload */}
+      <div className="image-upload-section">
+        <label>
+          Profile Picture
+          <span className="optional-text"> (optional)</span>
+        </label>
+        <div className="image-upload-container">
+          {imagePreview ? (
+            <div className="image-preview-wrapper">
+              <img src={imagePreview} alt="Profile preview" className="image-preview" />
+              <button 
+                type="button" 
+                onClick={removeImage} 
+                className="image-remove-btn"
+                aria-label="Remove image"
+              >
+                ×
+              </button>
+            </div>
+          ) : (
+            <label htmlFor="profile-image-input" className="image-upload-label">
+              <div className="image-upload-placeholder">
+                <span className="upload-icon">📷</span>
+                <span className="upload-text">Click to upload image</span>
+                <span className="upload-hint">PNG, JPG up to 2MB</span>
+              </div>
+              <input 
+                id="profile-image-input"
+                type="file" 
+                accept="image/*" 
+                onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+            </label>
+          )}
+        </div>
+        {errors.profileImage && (
+          <div className="field-error">{errors.profileImage}</div>
+        )}
+      </div>
 
       <label>
         Name <span className="required">*</span><br/>
