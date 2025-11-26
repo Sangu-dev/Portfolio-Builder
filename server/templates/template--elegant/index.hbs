@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{name}} — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f9f9f9;
+            --text: #333;
+            --accent: #2c3e50;
+            --border: #e0e0e0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            background: #fff;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin: 0 0 10px 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .role {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 10px;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+
+        .project {
+            margin-bottom: 40px;
+        }
+
+        .project p {
+            color: #555;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 24px;
+            filter: grayscale(100%);
+            transition: filter 0.5s;
+        }
+
+        .profile-image:hover {
+            filter: grayscale(0%);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            {{#if profileImage}}
+            <img src="{{profileImage}}" alt="{{name}}" class="profile-image" />
+            {{/if}}
+            <h1>{{name}}</h1>
+            <p class="role">{{role}}</p>
+        </header>
+
+        <section>
+            <h2>About</h2>
+            <p>{{bio}}</p>
+        </section>
+
+        {{#if skills}}
+        <section>
+            <h2>Expertise</h2>
+            <ul style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                {{#each skills}}
+                <li style="border: 1px solid #ddd; padding: 5px 15px; border-radius: 20px;">{{this}}</li>
+                {{/each}}
+            </ul>
+        </section>
+        {{/if}}
+
+        {{#if projects}}
+        <section>
+            <h2>Selected Works</h2>
+            {{#each projects}}
+            <div class="project">
+                <h3>{{title}}</h3>
+                <p>{{description}}</p>
+                {{#if link}}<a href="{{link}}" target="_blank">View Project</a>{{/if}}
+            </div>
+            {{/each}}
+        </section>
+        {{/if}}
+
+        <footer>
+            <h2>Contact</h2>
+            <div class="contact-links">
+                {{#if contact.email}}<a href="mailto:{{contact.email}}">Email</a>{{/if}}
+                {{#if contact.linkedin}}<a href="{{contact.linkedin}}" target="_blank">LinkedIn</a>{{/if}}
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

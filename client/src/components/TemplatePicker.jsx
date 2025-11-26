@@ -4,49 +4,56 @@ import React from 'react'
 const TemplatePlaceholder = ({ templateId, name }) => {
   const previews = {
     'template--simple': {
-      icon: '📄',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      icon: '✨',
+      gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)'
     },
     'template--modern': {
-      icon: '🎯',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+      icon: '🚀',
+      gradient: 'linear-gradient(135deg, #ec4899 0%, #f43f5e 100%)'
     },
     'template--classic': {
-      icon: '📰',
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+      icon: '💎',
+      gradient: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)'
     },
     'template--minimalist': {
-      icon: '✨',
-      gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+      icon: '⚡',
+      gradient: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)'
     },
     'template--dark': {
       icon: '🌙',
-      gradient: 'linear-gradient(135deg, #434343 0%, #000000 100%)'
+      gradient: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
     },
     'template--creative': {
       icon: '🎨',
-      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+      gradient: 'linear-gradient(135deg, #f59e0b 0%, #f97316 100%)'
+    },
+    'template--tech': {
+      icon: '👨‍💻',
+      gradient: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)'
+    },
+    'template--elegant': {
+      icon: '✒️',
+      gradient: 'linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%)'
     }
   }
 
-  const preview = previews[templateId] || { icon: '📋', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }
+  const preview = previews[templateId] || { icon: '📋', gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)' }
 
   return (
     <div className="template-placeholder" style={{ background: preview.gradient }}>
       <div className="template-placeholder-icon">{preview.icon}</div>
-      <div className="template-placeholder-pattern"></div>
     </div>
   )
 }
 
-export default function TemplatePicker({ templates = [], selected, onSelect }){
+export default function TemplatePicker({ templates = [], selected, onSelect }) {
   return (
     <div>
       <h2>Choose Template</h2>
       <div className="templates-grid">
         {templates.map(t => (
-          <div 
-            key={t.id} 
+          <div
+            key={t.id}
             className={`template-card ${selected?.id === t.id ? 'template-selected' : ''}`}
             onClick={() => onSelect(t)}
             onKeyDown={(e) => {

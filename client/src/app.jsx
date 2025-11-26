@@ -4,9 +4,12 @@ import TemplatePicker from './components/TemplatePicker'
 import Notification from './components/Notification'
 import PreviewModal from './components/PreviewModal'
 
+import LandingPage from './components/LandingPage'
+
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000'
 
-export default function App(){
+export default function App() {
+  const [view, setView] = useState('landing')
   const [templates, setTemplates] = useState([])
   const [selected, setSelected] = useState(null)
   const [profile, setProfile] = useState(null)
@@ -24,9 +27,9 @@ export default function App(){
       .then(setTemplates)
       .catch(err => {
         console.error(err)
-        setNotification({ 
-          message: 'Failed to load templates. Make sure the server is running.', 
-          type: 'error' 
+        setNotification({
+          message: 'Failed to load templates. Make sure the server is running.',
+          type: 'error'
         })
       })
   }, [])
@@ -37,27 +40,27 @@ export default function App(){
     setNotification({ message: '', type: 'info' })
     setShowPreview(true)
     setPreviewUrl(null)
-    
+
     try {
       const resp = await fetch(`${API_BASE}/api/generate-preview`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ templateId: selected.id, profile: p })
       })
-      
+
       if (!resp.ok) {
         const txt = await resp.text()
         throw new Error(txt || 'Failed to generate preview')
       }
-      
+
       const data = await resp.json()
       setPreviewUrl(`${API_BASE}${data.previewUrl}`)
     } catch (err) {
       console.error(err)
       setShowPreview(false)
-      setNotification({ 
-        message: `Preview error: ${err.message}`, 
-        type: 'error' 
+      setNotification({
+        message: `Preview error: ${err.message}`,
+        type: 'error'
       })
     } finally {
       setLoading(false)
@@ -68,19 +71,19 @@ export default function App(){
     setProfile(p)
     setLoading(true)
     setNotification({ message: '', type: 'info' })
-    
+
     try {
       const resp = await fetch(`${API_BASE}/api/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ templateId: selected.id, profile: p })
       })
-      
-      if (!resp.ok) { 
+
+      if (!resp.ok) {
         const txt = await resp.text()
-        throw new Error(txt || 'Failed to generate portfolio') 
+        throw new Error(txt || 'Failed to generate portfolio')
       }
-      
+
       const blob = await resp.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -90,31 +93,31 @@ export default function App(){
       a.click()
       a.remove()
       URL.revokeObjectURL(url)
-      
-      setNotification({ 
-        message: 'Portfolio generated successfully! Download should start automatically.', 
-        type: 'success' 
+
+      setNotification({
+        message: 'Portfolio generated successfully! Download should start automatically.',
+        type: 'success'
       })
     } catch (err) {
       console.error(err)
-      setNotification({ 
-        message: `Error: ${err.message}`, 
-        type: 'error' 
+      setNotification({
+        message: `Error: ${err.message}`,
+        type: 'error'
       })
-    } finally { 
-      setLoading(false) 
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <div className="app">
-      <Notification 
-        message={notification.message} 
+      <Notification
+        message={notification.message}
         type={notification.type}
         onClose={() => setNotification({ message: '', type: 'info' })}
       />
-      
-      <PreviewModal 
+
+      <PreviewModal
         isOpen={showPreview}
         onClose={() => {
           setShowPreview(false)
@@ -122,42 +125,51 @@ export default function App(){
         }}
         previewUrl={previewUrl}
       />
-      
-      <div className="hero">
-        <h1>🎨 Portfolio Builder</h1>
-        <p className="subtitle">Create your professional portfolio in minutes</p>
-        <div className="features">
-          <div className="feature-badge">✨ 6 Templates</div>
-          <div className="feature-badge">👁️ Live Preview</div>
-          <div className="feature-badge">⚡ Instant Download</div>
-        </div>
-      </div>
-      
-      {templates.length === 0 && !notification.message && (
-        <div className="loading-state">Loading templates...</div>
-      )}
-      
-      <div className="layout">
-        <div className="left">
-          <TemplatePicker templates={templates} selected={selected} onSelect={setSelected} />
-          {!selected && templates.length > 0 && (
-            <div className="hint">👈 Select a template to get started</div>
-          )}
-        </div>
-        <div className="right">
-          <ProfileForm 
-            onGenerate={handleGenerate} 
-            onPreview={handlePreview}
-            disabled={!selected || loading} 
-          />
-          {loading && (
-            <div className="loading-indicator">
-              <div className="spinner"></div>
-              <p>Generating your portfolio...</p>
+
+      {view === 'landing' ? (
+        <LandingPage onStart={() => setView('builder')} />
+      ) : (
+        <>
+          <div className="hero" style={{ marginBottom: 40, marginTop: 20 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <h1 style={{ fontSize: '2.5rem', margin: 0 }}>🎨 Builder</h1>
+              <button
+                onClick={() => setView('landing')}
+                className="btn-secondary"
+                style={{ padding: '8px 16px', fontSize: '0.9rem' }}
+              >
+                ← Back to Home
+              </button>
             </div>
+          </div>
+
+          {templates.length === 0 && !notification.message && (
+            <div className="loading-state">Loading templates...</div>
           )}
-        </div>
-      </div>
+
+          <div className="layout">
+            <div className="left">
+              <TemplatePicker templates={templates} selected={selected} onSelect={setSelected} />
+              {!selected && templates.length > 0 && (
+                <div className="hint">👈 Select a template to get started</div>
+              )}
+            </div>
+            <div className="right">
+              <ProfileForm
+                onGenerate={handleGenerate}
+                onPreview={handlePreview}
+                disabled={!selected || loading}
+              />
+              {loading && (
+                <div className="loading-indicator">
+                  <div className="spinner"></div>
+                  <p>Generating your portfolio...</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }

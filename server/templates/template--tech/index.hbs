@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{name}} — Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --accent: #58a6ff;
+      --border: #30363d;
+      --code-bg: #161b22;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      padding: 40px;
+      background: var(--code-bg);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+    }
+    h1 {
+      color: var(--accent);
+      margin: 0;
+    }
+    .role {
+      color: #8b949e;
+      font-size: 1.2em;
+    }
+    h2 {
+      color: var(--accent);
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 0.9em;
+    }
+    .project {
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+    .project:hover {
+      border-color: var(--accent);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .cursor::after {
+      content: '▋';
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      {{#if profileImage}}
+      <img src="{{profileImage}}" alt="{{name}}" class="profile-image" />
+      {{/if}}
+      <h1><span class="cursor">> {{name}}</span></h1>
+      <p class="role">// {{role}}</p>
+    </header>
+
+    <section>
+      <h2>/* About */</h2>
+      <p>{{bio}}</p>
+    </section>
+
+    {{#if skills}}
+    <section>
+      <h2>/* Skills */</h2>
+      <div>
+        {{#each skills}}
+          <span class="tag">{{this}}</span>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if projects}}
+    <section>
+      <h2>/* Projects */</h2>
+      {{#each projects}}
+        <div class="project">
+          <h3>{{title}}</h3>
+          <p>{{description}}</p>
+          {{#if link}}<a href="{{link}}" target="_blank">git checkout project →</a>{{/if}}
+        </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    <footer>
+      <h2>/* Contact */</h2>
+      {{#if contact.email}}<p>const email = "<a href="mailto:{{contact.email}}">{{contact.email}}</a>";</p>{{/if}}
+      {{#if contact.linkedin}}<p>const linkedin = "<a href="{{contact.linkedin}}" target="_blank">profile</a>";</p>{{/if}}
+    </footer>
+  </div>
+</body>
+</html>
